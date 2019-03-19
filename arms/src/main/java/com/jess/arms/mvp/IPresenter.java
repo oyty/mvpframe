@@ -36,7 +36,13 @@ public interface IPresenter {
     void onStart();
 
     /**
+     * 初始化数据
+     */
+    void start();
+
+    /**
      * 在框架中 {@link Activity#onDestroy()} 时会默认调用 {@link IPresenter#onDestroy()}
      */
     void onDestroy();
+
 }

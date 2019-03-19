@@ -63,6 +63,5 @@ dependencies {
     implementation rootProject.ext.dependencies["paginate"]
     implementation rootProject.ext.dependencies["smart-refresh-layout"]
     implementation rootProject.ext.dependencies["base-recyclerview-adapterhelper"]
-    implementation rootProject.ext.dependencies["swipebacklayout"]
 
 }

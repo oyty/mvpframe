@@ -12,6 +12,7 @@ import com.jess.arms.di.module.GlobalConfigModule;
 import com.jess.arms.http.log.RequestInterceptor;
 import com.jess.arms.integration.ConfigModule;
 import com.oyty.mvpframe.BuildConfig;
+import com.oyty.mvpframe.net.Api;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;

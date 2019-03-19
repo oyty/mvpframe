@@ -183,4 +183,5 @@ public class RepositoryManager implements IRepositoryManager {
     public Context getContext() {
         return mApplication;
     }
+
 }

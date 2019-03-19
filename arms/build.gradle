@@ -108,6 +108,8 @@ dependencies {
 
     //test
     api rootProject.ext.dependencies["timber"]
+
+    api rootProject.ext.dependencies["swipebacklayout"]
 }
 
 //apply from: '../bintray.gradle'

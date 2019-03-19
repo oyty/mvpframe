@@ -67,5 +67,4 @@ public interface IRepositoryManager {
     @NonNull
     Context getContext();
 
-    Object getMarkets(int lastUserId, int usersPrePage);
 }

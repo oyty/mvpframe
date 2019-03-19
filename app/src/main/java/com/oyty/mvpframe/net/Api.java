@@ -1,4 +1,4 @@
-package com.oyty.mvpframe.base;
+package com.oyty.mvpframe.net;
 
 /**
  * Created by oyty on 2019/3/15.

@@ -36,14 +36,9 @@ import io.reactivex.functions.Action;
 /**
  * ================================================
  * 基类 Presenter
- *
- * @see <a href="https://github.com/JessYanCoding/MVPArms/wiki#2.4.4">Presenter wiki 官方文档</a>
- * Created by JessYan on 4/28/2016
- * <a href="mailto:jess.yan.effort@gmail.com">Contact me</a>
- * <a href="https://github.com/JessYanCoding">Follow me</a>
  * ================================================
  */
-public class BasePresenter<M extends IModel, V extends IView> implements IPresenter, LifecycleObserver {
+public abstract class BasePresenter<M extends IModel, V extends IView> implements IPresenter, LifecycleObserver {
     protected final String TAG = this.getClass().getSimpleName();
     protected CompositeDisposable mCompositeDisposable;
     protected M mModel;
@@ -87,8 +82,9 @@ public class BasePresenter<M extends IModel, V extends IView> implements IPresen
                 ((LifecycleOwner) mRootView).getLifecycle().addObserver((LifecycleObserver) mModel);
             }
         }
-        if (useEventBus())//如果要使用 EventBus 请将此方法返回 true
+        if (useEventBus()) {
             EventBusManager.getInstance().register(this);//注册 EventBus
+        }
     }
 
     /**
@@ -96,11 +92,13 @@ public class BasePresenter<M extends IModel, V extends IView> implements IPresen
      */
     @Override
     public void onDestroy() {
-        if (useEventBus())//如果要使用 EventBus 请将此方法返回 true
+        if (useEventBus()) {
             EventBusManager.getInstance().unregister(this);//注销 EventBus
+        }
         unDispose();//解除订阅
-        if (mModel != null)
+        if (mModel != null) {
             mModel.onDestroy();
+        }
         this.mModel = null;
         this.mRootView = null;
         this.mCompositeDisposable = null;
@@ -159,4 +157,5 @@ public class BasePresenter<M extends IModel, V extends IView> implements IPresen
             mCompositeDisposable.clear();//保证 Activity 结束时取消所有正在执行的订阅
         }
     }
+
 }

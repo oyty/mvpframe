@@ -53,10 +53,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
 /**
  * ================================================
  * 提供一些三方库客户端实例的 {@link Module}
- * <p>
- * Created by JessYan on 2016/3/14.
- * <a href="mailto:jess.yan.effort@gmail.com">Contact me</a>
- * <a href="https://github.com/JessYanCoding">Follow me</a>
  * ================================================
  */
 @Module
@@ -78,16 +74,16 @@ public abstract class ClientModule {
     @Provides
     static Retrofit provideRetrofit(Application application, @Nullable RetrofitConfiguration configuration, Retrofit.Builder builder, OkHttpClient client
             , HttpUrl httpUrl, Gson gson) {
-        builder
-                .baseUrl(httpUrl)//域名
+
+        builder.baseUrl(httpUrl)
                 .client(client);//设置 OkHttp
 
         if (configuration != null)
             configuration.configRetrofit(application, builder);
 
-        builder
-                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())//使用 RxJava
+        builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create())//使用 RxJava
                 .addConverterFactory(GsonConverterFactory.create(gson));//使用 Gson
+
         return builder.build();
     }
 
@@ -107,8 +103,8 @@ public abstract class ClientModule {
     @Provides
     static OkHttpClient provideClient(Application application, @Nullable OkhttpConfiguration configuration, OkHttpClient.Builder builder, Interceptor intercept
             , @Nullable List<Interceptor> interceptors, @Nullable GlobalHttpHandler handler, ExecutorService executorService) {
-        builder
-                .connectTimeout(TIME_OUT, TimeUnit.SECONDS)
+
+        builder.connectTimeout(TIME_OUT, TimeUnit.SECONDS)
                 .readTimeout(TIME_OUT, TimeUnit.SECONDS)
                 .addNetworkInterceptor(intercept);
 

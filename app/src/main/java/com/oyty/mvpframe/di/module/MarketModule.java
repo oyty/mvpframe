@@ -4,20 +4,17 @@ import com.jess.arms.di.scope.ActivityScope;
 import com.oyty.mvpframe.mvp.contract.MarketContract;
 import com.oyty.mvpframe.mvp.model.MarketModel;
 
+import dagger.Binds;
 import dagger.Module;
-import dagger.Provides;
 
 /**
  * Created by oyty on 2019/3/18.
  */
 @Module
-public class MarketModule {
+public abstract class MarketModule {
 
     @ActivityScope
-    @Provides
-    MarketContract.Model provideModel(MarketModel model) {
-        return model;
-    }
-
+    @Binds
+    abstract MarketContract.Model provideModel(MarketModel model);
 
 }

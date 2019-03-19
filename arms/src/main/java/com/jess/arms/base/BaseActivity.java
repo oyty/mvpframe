@@ -117,7 +117,7 @@ public abstract class BaseActivity<P extends IPresenter> extends SwipeBackActivi
      */
     @Override
     public boolean useEventBus() {
-        return true;
+        return false;
     }
 
     /**

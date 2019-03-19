@@ -20,8 +20,13 @@ public class MainActivity extends BaseActivity {
     }
 
     @Override
-    public int initView(@Nullable Bundle savedInstanceState) {
+    public int initViewID() {
         return R.layout.activity_main;
+    }
+
+    @Override
+    public void initView() {
+
     }
 
     @Override

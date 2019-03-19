@@ -7,7 +7,6 @@ import java.util.concurrent.Future;
  */
 public class ExamplesForUsing {
 
-
     /**
      * Using it for background tasks
      */

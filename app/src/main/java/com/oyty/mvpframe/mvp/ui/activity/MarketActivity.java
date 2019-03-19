@@ -6,11 +6,16 @@ import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.jess.arms.base.BaseActivity;
 import com.jess.arms.di.component.AppComponent;
 import com.jess.arms.di.scope.ActivityScope;
+import com.jess.arms.utils.LogUtils;
 import com.oyty.mvpframe.R;
 import com.oyty.mvpframe.di.component.DaggerMarketComponent;
+import com.oyty.mvpframe.entity.MarketEntity;
+import com.oyty.mvpframe.entity.User;
 import com.oyty.mvpframe.mvp.contract.MarketContract;
 import com.oyty.mvpframe.mvp.presenter.MarketPresenter;
 import com.oyty.mvpframe.mvp.ui.adapter.MarketAdapter;
@@ -19,7 +24,9 @@ import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 
@@ -85,4 +92,16 @@ public class MarketActivity extends BaseActivity<MarketPresenter> implements Mar
     }
 
 
+    @Override
+    public void showData(List<User> entities) {
+        mSmartRefreshLayout.finishRefresh();
+        mSmartRefreshLayout.finishLoadMore();
+        mStatusView.showContent();
+
+
+        Type listType = new TypeToken<List<MarketEntity>>(){}.getType();
+        Gson gson = new Gson();
+        LogUtils.debugInfo(gson.toJson(entities, listType));
+//        adapter.setNewData(entities);
+    }
 }

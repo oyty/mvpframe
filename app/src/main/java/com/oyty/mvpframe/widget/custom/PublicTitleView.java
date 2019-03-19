@@ -71,7 +71,7 @@ public class PublicTitleView extends FrameLayout {
     private void initView() {
         View view = View.inflate(mContext, R.layout.view_public_title, this);
         ButterKnife.bind(this, view);
-        CommonUtil.updateStatusBarHeight(mContext, mStatusBarView);
+//        CommonUtil.updateStatusBarHeight(mContext, mStatusBarView);
         mMessageLayout.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {

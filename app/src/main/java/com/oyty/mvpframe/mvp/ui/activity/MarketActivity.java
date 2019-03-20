@@ -104,4 +104,9 @@ public class MarketActivity extends BaseActivity<MarketPresenter> implements Mar
         LogUtils.debugInfo(gson.toJson(entities, listType));
 //        adapter.setNewData(entities);
     }
+
+    @Override
+    public void showMarkets(List<MarketEntity> entities) {
+
+    }
 }

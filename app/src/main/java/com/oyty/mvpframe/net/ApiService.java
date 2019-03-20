@@ -16,8 +16,11 @@ import retrofit2.http.Query;
 public interface ApiService {
 
     @GET("/api/category/v2")
-    Observable<List<MarketEntity>> getMarkets(@Query("offset") String offset,
+    Observable<Response<List<MarketEntity>>> getMarkets(@Query("offset") String offset,
                                               @Query("category_id") String categoryId);
+
+    @GET("/api/category/v2")
+    Observable<List<User>> test();
 
     String HEADER_API_VERSION = "Accept: application/vnd.github.v3+json";
 

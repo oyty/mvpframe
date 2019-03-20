@@ -1,6 +1,5 @@
 package com.oyty.mvpframe.thread;
 
-import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.Future;
 import java.util.concurrent.FutureTask;
 import java.util.concurrent.PriorityBlockingQueue;

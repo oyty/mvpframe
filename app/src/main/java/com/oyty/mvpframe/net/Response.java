@@ -1,19 +1,28 @@
 package com.oyty.mvpframe.net;
 
-import org.json.JSONObject;
-
 /**
  * Created by oyty on 2019/3/18.
  */
-public class Response {
-    public String message;
+public class Response<T> {
 
-    public String code;
-    public String result;
+    private String message;
+    private String code;
+    private T data;
 
-    public Response(JSONObject jsonObject) {
-        this.code = jsonObject.optString("code");
-        this.message = jsonObject.optString("message");
-        this.result = jsonObject.optString("data");
+
+    public boolean isSuccess() {
+        return "0000".equals(code);
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public T getData() {
+        return data;
     }
 }

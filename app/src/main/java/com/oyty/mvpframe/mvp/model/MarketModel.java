@@ -7,6 +7,7 @@ import com.oyty.mvpframe.entity.MarketEntity;
 import com.oyty.mvpframe.entity.User;
 import com.oyty.mvpframe.mvp.contract.MarketContract;
 import com.oyty.mvpframe.net.ApiService;
+import com.oyty.mvpframe.net.Response;
 
 import java.util.List;
 
@@ -26,7 +27,7 @@ public class MarketModel extends BaseModel implements MarketContract.Model {
     }
 
     @Override
-    public Observable<List<MarketEntity>> getMarkets(int offset, int categoryId) {
+    public Observable<Response<List<MarketEntity>>> getMarkets(int offset, int categoryId) {
         return mRepositoryManager
                 .obtainRetrofitService(ApiService.class)
                 .getMarkets(String.valueOf(offset), String.valueOf(categoryId));
@@ -37,5 +38,12 @@ public class MarketModel extends BaseModel implements MarketContract.Model {
         return mRepositoryManager
                 .obtainRetrofitService(ApiService.class)
                 .getUsers(lastIdQueried, 10);
+    }
+
+    @Override
+    public Observable<List<User>> test() {
+        return mRepositoryManager
+                .obtainRetrofitService(ApiService.class)
+                .test();
     }
 }

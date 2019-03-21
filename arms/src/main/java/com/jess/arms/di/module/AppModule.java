@@ -26,7 +26,9 @@ import com.google.gson.GsonBuilder;
 import com.jess.arms.integration.ActivityLifecycle;
 import com.jess.arms.integration.FragmentLifecycle;
 import com.jess.arms.integration.IRepositoryManager;
+import com.jess.arms.integration.ISchedulerProvider;
 import com.jess.arms.integration.RepositoryManager;
+import com.jess.arms.integration.SchedulerProvider;
 import com.jess.arms.integration.cache.Cache;
 import com.jess.arms.integration.cache.CacheType;
 import com.jess.arms.integration.lifecycle.ActivityLifecycleForRxLifecycle;
@@ -60,6 +62,9 @@ public abstract class AppModule {
 
     @Binds
     abstract IRepositoryManager bindRepositoryManager(RepositoryManager repositoryManager);
+
+    @Binds
+    abstract ISchedulerProvider bindSchedulerProvider(SchedulerProvider schedulerProvider);
 
     @Singleton
     @Provides

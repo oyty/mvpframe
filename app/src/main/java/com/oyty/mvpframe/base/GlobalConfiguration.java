@@ -38,7 +38,7 @@ public class GlobalConfiguration implements ConfigModule {
                 .globalHttpHandler(new GlobalHttpHandlerImpl(context))
                 //用来处理 RxJava 中发生的所有错误, RxJava 中发生的每个错误都会回调此接口
                 //RxJava 必须要使用 ErrorHandleSubscriber (默认实现 Subscriber 的 onError 方法), 此监听才生效
-                .responseErrorListener(new ResponseErrorListenerImpl())
+//                .responseErrorListener(new ResponseErrorListenerImpl())
                 .gsonConfiguration(new AppModule.GsonConfiguration() {
                     @Override
                     public void configGson(Context context, GsonBuilder builder) {

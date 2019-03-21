@@ -109,4 +109,5 @@ public class MarketActivity extends BaseActivity<MarketPresenter> implements Mar
     public void showMarkets(List<MarketEntity> entities) {
 
     }
+
 }

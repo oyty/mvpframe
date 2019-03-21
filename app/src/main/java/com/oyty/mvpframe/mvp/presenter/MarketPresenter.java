@@ -2,18 +2,17 @@ package com.oyty.mvpframe.mvp.presenter;
 
 import com.jess.arms.di.scope.ActivityScope;
 import com.jess.arms.mvp.BasePresenter;
-import com.jess.arms.utils.RxLifecycleUtils;
+import com.jess.arms.utils.LogUtils;
 import com.oyty.mvpframe.entity.MarketEntity;
 import com.oyty.mvpframe.mvp.contract.MarketContract;
+import com.oyty.mvpframe.net.CallbackWrapper;
+import com.oyty.mvpframe.util.GsonUtil;
 
 import java.util.List;
 
 import javax.inject.Inject;
 
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.schedulers.Schedulers;
 import me.jessyan.rxerrorhandler.core.RxErrorHandler;
-import me.jessyan.rxerrorhandler.handler.ErrorHandleSubscriber;
 
 /**
  * Created by oyty on 2019/3/18.
@@ -38,6 +37,24 @@ public class MarketPresenter extends BasePresenter<MarketContract.Model, MarketC
 
     public void onRefresh() {
         offset = 0;
+
+        mModel.getMarkets(0, 0)
+                .subscribe(new CallbackWrapper<List<MarketEntity>>(mRootView) {
+                    @Override
+                    protected void onSuccess(List<MarketEntity> data) {
+                        LogUtils.debugInfo("hahahhahha", GsonUtil.array2Json(data));
+                    }
+
+                    @Override
+                    protected void onFailed(String code, String msg) {
+//                        super.onFailed(code, msg);
+                    }
+
+                    @Override
+                    protected void onNetworkFailed(String msg) {
+//                        super.onNetworkFailed(msg);
+                    }
+                });
         /*mModel.getUsers(1, 10)
             .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -59,6 +76,7 @@ public class MarketPresenter extends BasePresenter<MarketContract.Model, MarketC
                     }
                 });*/
 
+//        })
     }
 
     public void onLoadMore() {

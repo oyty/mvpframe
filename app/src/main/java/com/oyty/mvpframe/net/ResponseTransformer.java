@@ -8,24 +8,18 @@ import io.reactivex.functions.Function;
 /**
  * Created by oyty on 2019/3/19.
  */
-public class ResponseTransformer {
+public class ResponseTransformer<T> implements ObservableTransformer<Response<T>, T> {
 
-//    public static <T>ObservableTransformer<Response<T>, T> handleResult() {
-//        return new ObservableTransformer<Response<T>, T>() {
-//            @Override
-//            public ObservableSource<T> apply(Observable<Response<T>> upstream) {
-//                return upstream.flatMap(new Function<Response<T>, ObservableSource<?>>() {
-//                    @Override
-//                    public ObservableSource<?> apply(Response<T> response) throws Exception {
-//                        if(response.isSuccess()) {
-//                            return Observable.just(response.getData());
-//                        } else {
-//                            return Observable.error(new );
-//                        }
-//                    }
-//                });
-//            }
-//        };
-//    }
+    @Override
+    public ObservableSource<T> apply(Observable<Response<T>> upstream) {
+
+        return upstream.onErrorResumeNext((Function<Throwable, ObservableSource<? extends Response<T>>>) Observable::error).flatMap((Function<Response<T>, ObservableSource<T>>) response -> {
+            if(response.isSuccess()) {
+                return Observable.just(response.getData());
+            } else {
+                return Observable.error(new ApiException(response.getCode(), response.getMessage()));
+            }
+        });
+    }
 
 }

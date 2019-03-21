@@ -22,4 +22,9 @@ package com.jess.arms.mvp;
  */
 public interface IView {
 
+    void showLoadingProgress();
+
+    void hideLoadingProgress();
+
+    void showToast(String msg);
 }

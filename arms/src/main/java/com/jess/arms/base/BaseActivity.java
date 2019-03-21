@@ -25,6 +25,7 @@ import android.support.v4.app.Fragment;
 import android.util.AttributeSet;
 import android.view.InflateException;
 import android.view.View;
+import android.widget.Toast;
 
 import com.jess.arms.base.delegate.IActivity;
 import com.jess.arms.di.component.AppComponent;
@@ -32,6 +33,7 @@ import com.jess.arms.integration.cache.Cache;
 import com.jess.arms.integration.cache.CacheType;
 import com.jess.arms.integration.lifecycle.ActivityLifecycleable;
 import com.jess.arms.mvp.IPresenter;
+import com.jess.arms.mvp.IView;
 import com.jess.arms.utils.AndroidBugUtil;
 import com.jess.arms.utils.ArmsUtils;
 import com.trello.rxlifecycle2.android.ActivityEvent;
@@ -46,7 +48,7 @@ import me.imid.swipebacklayout.lib.app.SwipeBackActivity;
 
 import static com.jess.arms.utils.ThirdViewUtil.convertAutoView;
 
-public abstract class BaseActivity<P extends IPresenter> extends SwipeBackActivity implements IActivity, ActivityLifecycleable {
+public abstract class BaseActivity<P extends IPresenter> extends SwipeBackActivity implements IActivity, ActivityLifecycleable, IView {
     protected final String TAG = this.getClass().getSimpleName();
     private final BehaviorSubject<ActivityEvent> mLifecycleSubject = BehaviorSubject.create();
     private Cache<String, Object> mCache;
@@ -144,5 +146,20 @@ public abstract class BaseActivity<P extends IPresenter> extends SwipeBackActivi
     @Override
     public final Subject<ActivityEvent> provideLifecycleSubject() {
         return mLifecycleSubject;
+    }
+
+    @Override
+    public void showLoadingProgress() {
+
+    }
+
+    @Override
+    public void showToast(String msg) {
+        ArmsUtils.makeText(mContext, msg);
+    }
+
+    @Override
+    public void hideLoadingProgress() {
+
     }
 }

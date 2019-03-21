@@ -21,6 +21,7 @@ import android.arch.lifecycle.LifecycleOwner;
 import android.arch.lifecycle.OnLifecycleEvent;
 
 import com.jess.arms.integration.IRepositoryManager;
+import com.jess.arms.integration.ISchedulerProvider;
 
 /**
  * ================================================
@@ -28,10 +29,13 @@ import com.jess.arms.integration.IRepositoryManager;
  * ================================================
  */
 public class BaseModel implements IModel, LifecycleObserver {
-    protected IRepositoryManager mRepositoryManager;//用于管理网络请求层, 以及数据缓存层
 
-    public BaseModel(IRepositoryManager repositoryManager) {
+    protected IRepositoryManager mRepositoryManager;
+    protected ISchedulerProvider mSchedulerProvider;
+
+    public BaseModel(IRepositoryManager repositoryManager, ISchedulerProvider schedulerProvider) {
         this.mRepositoryManager = repositoryManager;
+        this.mSchedulerProvider = schedulerProvider;
     }
 
     /**

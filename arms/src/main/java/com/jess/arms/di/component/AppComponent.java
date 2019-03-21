@@ -27,6 +27,7 @@ import com.jess.arms.http.imageloader.BaseImageLoaderStrategy;
 import com.jess.arms.http.imageloader.ImageLoader;
 import com.jess.arms.integration.ConfigModule;
 import com.jess.arms.integration.IRepositoryManager;
+import com.jess.arms.integration.ISchedulerProvider;
 import com.jess.arms.integration.cache.Cache;
 import com.jess.arms.utils.ArmsUtils;
 
@@ -56,6 +57,12 @@ public interface AppComponent {
      * @return {@link IRepositoryManager}
      */
     IRepositoryManager repositoryManager();
+
+    /**
+     * 管理线程切换
+     * @return
+     */
+    ISchedulerProvider schedulerProvider();
 
     /**
      * RxJava 错误处理管理类
